@@ -1,4 +1,4 @@
 
 ## Screenhots
 
-<img src="https://github.com/bhavishassai/stickerspro_readme/blob/main/screenshots/19.jpeg?raw=true" height="450px"/>
+<img src="https://github.com/dhananjaya-b/aerothon_5.0/blob/main/screenshots/signup.png?raw=true" height="450px"/>
