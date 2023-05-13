@@ -1,6 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { getQuery } from "../axiosService";
 
 const FabricTable = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getQuery('getview/FABRICATION').then(res=>{
+      if(!res.error) setData(res.data.list)
+    })
+  }, [])
+  
+
   return (
     <div style={{ marginTop: "5%" }}>
       <h2
@@ -34,30 +45,20 @@ const FabricTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr style={{ border: "1px solid #FFC06E" }}>
-            <td>Tiger</td>
-            <td>Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-          </tr>
-          <tr style={{ borderBottom: "1px solid #FFC06E" }}>
-            <td>Tiger</td>
-            <td>Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-          </tr>
-          <tr style={{ borderBottom: "1px solid #FFC06E" }}>
-            <td>Tiger</td>
-            <td>Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-          </tr>
+          {
+            data.map(ele=>{
+              return (
+                <tr style={{ border: "1px solid #FFC06E" }}>
+                  <td>Tiger</td>
+                  <td>Nixon</td>
+                  <td>System Architect</td>
+                  <td>Edinburgh</td>
+                  <td>61</td>
+                  <td>2011/04/25</td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import AddAssembly from "./AddAssembly";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/header.css";
 import AssemblyTable from "./AssemblyTable";
 
@@ -10,6 +10,14 @@ const AssembleHome = () => {
   const [selectedComponent, setSelectedComponent] = useState("FabricTable");
   function handleOptionClick(option) {
     setSelectedComponent(option);
+  }
+
+  const navigation = useNavigate()
+
+  const handleLogout = () =>{
+    getQuery('logout').then(res=>{
+      if(!res.error && res.data.logout) navigation('/')
+    })
   }
 
   switch (selectedComponent) {
@@ -50,9 +58,9 @@ const AssembleHome = () => {
                 </a>
               </li>
               <li class="header__item">
-                <Link class="header__link" to={"/"}>
+                <span class="header__link" onClick={handleLogout}>
                   Logout
-                </Link>
+                </span>
               </li>
             </ul>
           </nav>

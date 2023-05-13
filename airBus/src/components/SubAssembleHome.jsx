@@ -1,13 +1,23 @@
 import React from "react";
 import AddSubAssebmly from "./AddSubAssebmly";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../styles/header.css";
 import SubAssemblyTable from "./SubAssemblyTable";
+import { getQuery } from "../axiosService";
 
 
 
 const SubAssembleHome = () => {
+
+  const navigation = useNavigate()
+
+  const handleLogout = () =>{
+    getQuery('logout').then(res=>{
+      if(!res.error && res.data.logout) navigation('/')
+    })
+  }
+
     let componentToRender;
     const [selectedComponent, setSelectedComponent] = useState("FabricTable");
     function handleOptionClick(option) {
@@ -16,7 +26,7 @@ const SubAssembleHome = () => {
 
     switch (selectedComponent) {
       case "SubAssemblyTable":
-        componentToRender = <SubAssemblyTableblyTable />;
+        componentToRender = <SubAssemblyTable />;
         break;
 
       case "addnewdata":
@@ -31,7 +41,7 @@ const SubAssembleHome = () => {
       <header class="header">
         <div class="container">
           <div class="header__logo">
-            <h1 class="header__logo__name">Logo</h1>
+            <h1 class="header__logo__name">InnovateX</h1>
           </div>
           <nav class="header__nav">
             <ul class="header__menu">
@@ -52,9 +62,9 @@ const SubAssembleHome = () => {
                 </a>
               </li>
               <li class="header__item">
-                <Link class="header__link" to={"/"}>
+                <span class="header__link"  onClick={handleLogout}>
                   Logout
-                </Link>
+                </span>
               </li>
             </ul>
           </nav>
