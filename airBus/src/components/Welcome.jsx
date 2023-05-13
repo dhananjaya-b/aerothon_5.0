@@ -5,7 +5,8 @@ import "../styles/welcome.css";
 const Welcome = () => {
     return (
       <div className="welcomebody">
-        <h1>Welcome to the app!</h1>
+        <h1>Welcome to InnovateX!</h1>
+        <h3 style={{margin: "2rem"}}>A Supply Management Service</h3>
         <div>
           <button
             style={{
